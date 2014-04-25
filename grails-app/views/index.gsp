@@ -20,7 +20,7 @@
             </facebookAuth:init>
             <sec:ifNotGranted roles="ROLE_FACEBOOK">
                 <ul>
-                    <li><facebookAuth:connect/></li>
+                    <li><facebookAuth:connect permissions="email,user_about_me,user_birthday"/></li>
                 </ul>
             </sec:ifNotGranted>
             <sec:ifAllGranted roles="ROLE_FACEBOOK">
@@ -58,6 +58,13 @@
                         <td>E-Mail:</td>
                         <td>${user.email.encodeAsHTML()}</td>
                     </tr>
+                    <tr>
+                        <td>mmmm:</td>
+                        <td><g:formatDate date="${facebookUser?.accessTokenExpires}" type="datetime" style="LONG" timeStyle="SHORT"/></td>
+                    </tr>
+
+
+                    facebookUser
                 </table>
 
                 <h2>Logout</h2>

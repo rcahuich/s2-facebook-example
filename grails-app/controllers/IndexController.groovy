@@ -1,3 +1,5 @@
+import com.the6hours.example.FacebookUser
+import com.the6hours.example.User
 import grails.plugins.springsecurity.SpringSecurityService
 
 class IndexController {
@@ -5,10 +7,14 @@ class IndexController {
     SpringSecurityService springSecurityService
 
     def show() {
-        def model = [:]
+        //def model = [:]
+        User user
+        FacebookUser facebookUser
         if (springSecurityService.isLoggedIn()) {
-            model.user = springSecurityService.currentUser
+            user = springSecurityService.currentUser
+            facebookUser = FacebookUser.findByUser(user)
+            log.debug("############### " + facebookUser.accessTokenExpires)
         }
-        render view: '/index', model: model
+        render (view: '/index', model: [user: user, facebookUser: facebookUser])
     }
 }

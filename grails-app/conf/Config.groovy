@@ -63,6 +63,12 @@ grails.logging.jul.usebridge = true
 
 grails.serverURL="http://plugin-test.dev:8080/${appName}"
 
+environments {
+    development {
+        grails.serverURL = "http://plugin-test.dev:8080/${appName}"
+    }
+}
+
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console
